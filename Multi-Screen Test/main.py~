@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+import pygame
+pygame.init()
+screen1=pygame.display.set_mode((20,20))
+screen2=pygame.display.set_mode((30,30))
