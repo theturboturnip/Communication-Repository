@@ -82,20 +82,32 @@ class enemy(character):
             else:
                 self.currentTarget=self.pointsToMoveTo[1]
         else:
-            if(self.currentTarget[0]!=self.x):
-                if(self.currentTarget[0]>self.x):
-                    self.x+=self.moveSpeed
-                    self.armCoors=self.rightArmCoors
-                else:
-                    self.x-=self.moveSpeed
-                    self.armCoors=self.leftArmCoors
+            if self.currentTarget==self.pointsToMoveTo[1]:
+                if self.move_horizontal()==False:
+                    self.move_vertical()
             else:
-                if(self.currentTarget[1]>self.y):
-                    self.y+=self.moveSpeed
-                    self.armCoors=self.downArmCoors
-                else:
-                    self.y-=self.moveSpeed
-                    self.armCoors=self.upArmCoors
+                if self.move_vertical()==False:
+                    self.move_horizontal()
+    def move_vertical(self):
+        if(self.y!=self.currentTarget[1]):
+            if(self.currentTarget[1]>self.y):
+                self.y+=self.moveSpeed
+                self.armCoors=self.downArmCoors
+            else:
+                self.y-=self.moveSpeed
+                self.armCoors=self.upArmCoors
+            return True
+        return False
+    def move_horizontal(self):
+        if(self.currentTarget[0]!=self.x):
+            if(self.currentTarget[0]>self.x):
+                self.x+=self.moveSpeed
+                self.armCoors=self.rightArmCoors
+            else:
+                self.x-=self.moveSpeed
+                self.armCoors=self.leftArmCoors
+            return True
+        return False
 
 def mainLoop():
     newPlayer=player()
