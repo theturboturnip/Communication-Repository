@@ -1,0 +1,43 @@
+sta storage
+sta quotient
+inp
+sta top
+inp 
+sta bottom
+sub top
+brz swap
+brp startloop
+bra swap
+
+swap lda bottom
+sta storage
+lda top
+sta bottom
+lda storage
+sta top
+
+startloop sub top
+bra getnegative
+ifnegative sta total
+lda quotient
+add 098
+sta quotient
+lda total
+bra startloop
+
+getnegative brz endloop
+brp ifnegative
+bra endloop
+
+endloop lda top
+out
+lda bottom
+out
+lda quotient
+out
+halt
+top dat
+bottom dat
+storage dat
+quotient dat
+total dat

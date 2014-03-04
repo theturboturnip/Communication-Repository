@@ -1,0 +1,23 @@
+//These two are how to swap two numbers if the first one input is
+//bigger than the second one input.
+sta storage
+inp
+sta first
+inp 
+sta last
+sub first
+brz swap
+brp startloop
+bra swap
+
+swap lda bottom
+sta storage
+lda first
+sta last
+lda storage
+sta first
+
+//This checks if a number is zero or negative.
+getnegative brz isnegative
+brp notnegative
+bra isnegative
